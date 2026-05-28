@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #1a1714;
+  background: #f7f4ef;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #1a1714;
+  color: white;
+}
+.logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #c85a2a;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+nav ul a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: #c85a2a; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: #1a1714;
+  color: white;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 2rem;
+}
+.btn {
+  display: inline-block;
+  background: #c85a2a;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn:hover { background: #b04e24; }
+
+/* SECTIONS */
+.about, .contact {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+.about h2, .contact h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #1a1714;
+}
+.about p, .contact p {
+  font-size: 1rem;
+  color: #7a756e;
+  line-height: 1.7;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #1a1714;
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}

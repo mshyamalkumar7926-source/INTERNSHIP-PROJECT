@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Calendar — June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F4EF;
+  --surface: #FFFFFF;
+  --border: #E2DDD6;
+  --text: #1A1714;
+  --muted: #7A756E;
+  --accent: #C85A2A;
+  --accent-light: #F5EAE4;
+  --ig: #E8481C;
+  --ig-bg: #FEF0EB;
+  --fb: #1877F2;
+  --fb-bg: #EBF3FE;
+  --li: #0A66C2;
+  --li-bg: #EBF4FB;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+/* HEADER */
+.page-header {
+  background: var(--text);
+  color: #F7F4EF;
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(200,90,42,0.18);
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 30%;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: rgba(200,90,42,0.10);
+}
+.header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.brand-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); background: rgba(200,90,42,0.15);
+  padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px;
+}
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+h1 em { font-style: italic; color: #C85A2A; }
+.header-meta { display: flex; gap: 1.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
+.meta-item { font-size: 12px; color: rgba(247,244,239,0.6); display: flex; align-items: center; gap: 5px; }
+.meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.header-actions { display: flex; gap: 8px; align-items: flex-start; }
+.btn {
+  padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; gap: 6px; transition: all 0.15s; white-space: nowrap;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #B04E24; }
+.btn-ghost { background: rgba(255,255,255,0.1); color: rgba(247,244,239,0.85); border: 1px solid rgba(255,255,255,0.15); }
+.btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+/* TOOLBAR */
+.toolbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 2rem;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.toolbar-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.filter-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-btn {
+  font-family: 'DM Sans', sans-serif;
+  padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
+  border: 1px solid var(--border); background: transparent; color: var(--muted);
+  cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 5px;
+}
+.filter-btn:hover { border-color: var(--text); color: var(--text); }
+.filter-btn.active { background: var(--text); color: white; border-color: var(--text); }
+.filter-btn .dot { width: 7px; height: 7px; border-radius: 50%; }
+.toolbar-right { margin-left: auto; display: flex; gap: 8px; }
+.view-btn {
+  padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  border: 1px solid var(--border); background: transparent; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; color: var(--muted); transition: all 0.15s;
+}
+.view-btn.active { background: var(--bg); color: var(--text); border-color: var(--text); }
+
+/* MAIN */
+.main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 4rem; }
+
+/* STATS ROW */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem; text-align: center;
+}
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1; color: var(--text); }
+.stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 500; letter-spacing: 0.3px; }
+.stat-card.accent { background: var(--accent); border-color: var(--accent); }
+.stat-card.accent .stat-num, .stat-card.accent .stat-label { color: white; }
+
+/* LEGEND */
+.legend { display: flex; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.leg-icon { width: 22px; height: 22px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+
+/* CALENDAR VIEW */
+.calendar-view { display: none; }
+.calendar-view.active { display: block; }
+.cal-header { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 4px; }
+.cal-day-name { text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding: 6px 0; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-cell {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); min-height: 105px; padding: 8px;
+  transition: border-color 0.15s;
+}
+.cal-cell:hover { border-color: #C8C0B6; }
+.cal-cell.empty { background: transparent; border-color: transparent; }
+.cal-cell.today { border-color: var(--accent); border-width: 2px; }
+.cal-num { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
+.cal-num.is-today { color: var(--accent); }
+.post-chip {
+  font-size: 10px; padding: 3px 6px; border-radius: 4px; margin-bottom: 2px;
+  cursor: pointer; display: flex; align-items: center; gap: 3px;
+  transition: opacity 0.15s; line-height: 1.3; overflow: hidden;
+}
+.post-chip:hover { opacity: 0.75; }
+.chip-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 85px; }
+.post-chip.ig { background: var(--ig-bg); color: var(--ig); }
+.post-chip.fb { background: var(--fb-bg); color: var(--fb); }
+.post-chip.li { background: var(--li-bg); color: var(--li); }
+.post-chip.hidden { display: none; }
+.more-tag { font-size: 9px; color: var(--muted); padding: 1px 4px; background: var(--bg); border-radius: 3px; display: inline-block; cursor: pointer; margin-top: 1px; }
+
+/* LIST VIEW */
+.list-view { display: none; }
+.list-view.active { display: block; }
+.week-group { margin-bottom: 2rem; }
+.week-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.list-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+  margin-bottom: 6px; display: flex; align-items: flex-start; gap: 12px;
+  cursor: pointer; transition: all 0.15s;
+}
+.list-item:hover { border-color: #C8C0B6; box-shadow: var(--shadow); }
+.list-date { min-width: 36px; text-align: center; }
+.list-date-num { font-family: 'DM Serif Display', serif; font-size: 1.4rem; line-height: 1; color: var(--text); }
+.list-date-day { font-size: 10px; color: var(--muted); font-weight: 500; }
+.list-divider { width: 1px; background: var(--border); align-self: stretch; }
+.list-plat-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; display: inline-block; }
+.list-plat-badge.ig { background: var(--ig-bg); color: var(--ig); }
+.list-plat-badge.fb { background: var(--fb-bg); color: var(--fb); }
+.list-plat-badge.li { background: var(--li-bg); color: var(--li); }
+.list-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.list-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.list-meta { margin-left: auto; text-align: right; flex-shrink: 0; }
+.list-type { font-size: 10px; color: var(--muted); background: var(--bg); padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+.list-time { font-size: 10px; color: var(--muted); margin-top: 4px; }
+.list-item.hidden { display: none; }
+
+/* MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,23,20,0.55); z-index: 200;
+  align-items: center; justify-content: center; padding: 1rem;
+  backdrop-filter: blur(2px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface); border-radius: 14px; padding: 1.75rem;
+  max-width: 420px; width: 100%; position: relative;
+  animation: modal-in 0.2s ease;
+  border: 1px solid var(--border);
+}
+@keyframes modal-in { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: none; } }
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--bg); border: none; border-radius: 50%;
+  width: 28px; height: 28px; cursor: pointer; font-size: 14px; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+}
+.modal-close:hover { background: var(--border); color: var(--text); }
+.modal-plat-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+.modal-plat-badge.ig { background: var(--ig-bg); color: var(--ig); }
+.modal-plat-badge.fb { background: var(--fb-bg); color: var(--fb); }
+.modal-plat-badge.li { background: var(--li-bg); color: var(--li); }
+.modal-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 8px; line-height: 1.25; }
+.modal-body { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.modal-tag { font-size: 11px; padding: 3px 8px; background: var(--bg); color: var(--muted); border-radius: 4px; border: 1px solid var(--border); }
+.modal-footer { display: flex; gap: 12px; border-top: 1px solid var(--border); padding-top: 12px; font-size: 11px; color: var(--muted); }
+.modal-footer span { display: flex; align-items: center; gap: 5px; }
+
+/* PRINT */
+@media print {
+  .toolbar, .header-actions, .modal-overlay, .btn { display: none !important; }
+  .main { padding: 0; }
+  .cal-cell { page-break-inside: avoid; }
+}
+
+@media (max-width: 700px) {
+  .page-header { padding: 1.5rem 1rem 1.25rem; }
+  .main { padding: 1rem 1rem 3rem; }
+  .toolbar { padding: 0.6rem 1rem; }
+  h1 { font-size: 1.8rem; }
+  .cal-cell { min-height: 75px; padding: 5px; }
+  .chip-text { max-width: 55px; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="brand-tag">Digital Marketing Internship</div>
+        <h1>Content <em>Calendar</em></h1>
+        <div class="header-meta">
+          <span class="meta-item"><span class="meta-dot"></span> June 2026</span>
+          <span class="meta-item"><span class="meta-dot"></span> E-commerce / Retail</span>
+          <span class="meta-item"><span class="meta-dot"></span> 30 posts planned</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-ghost" onclick="window.print()">🖨 Print</button>
+        <button class="btn btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <span class="filter-label">Filter</span>
+    <div class="filters">
+      <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="filter-btn" onclick="setFilter('ig',this)">
+        <span class="dot" style="background:var(--ig)"></span>Instagram
+      </button>
+      <button class="filter-btn" onclick="setFilter('fb',this)">
+        <span class="dot" style="background:var(--fb)"></span>Facebook
+      </button>
+      <button class="filter-btn" onclick="setFilter('li',this)">
+        <span class="dot" style="background:var(--li)"></span>LinkedIn
+      </button>
+    </div>
+    <div class="toolbar-right">
+      <button class="view-btn active" id="btn-cal" onclick="switchView('cal')">📅 Calendar</button>
+      <button class="view-btn" id="btn-list" onclick="switchView('list')">📋 List</button>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="stats-row">
+    <div class="stat-card accent"><div class="stat-num">30</div><div class="stat-label">Total posts</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--ig)">14</div><div class="stat-label">Instagram</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--fb)">10</div><div class="stat-label">Facebook</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--li)">6</div><div class="stat-label">LinkedIn</div></div>
+    <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Promo posts</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Reels/Videos</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><div class="leg-icon" style="background:var(--ig-bg);color:var(--ig)">IG</div> Instagram</div>
+    <div class="leg"><div class="leg-icon" style="background:var(--fb-bg);color:var(--fb)">FB</div> Facebook</div>
+    <div class="leg"><div class="leg-icon" style="background:var(--li-bg);color:var(--li)">in</div> LinkedIn</div>
+  </div>
+
+  <div class="calendar-view active" id="view-cal">
+    <div class="cal-header">
+      <div class="cal-day-name">Sun</div><div class="cal-day-name">Mon</div>
+      <div class="cal-day-name">Tue</div><div class="cal-day-name">Wed</div>
+      <div class="cal-day-name">Thu</div><div class="cal-day-name">Fri</div>
+      <div class="cal-day-name">Sat</div>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <div class="list-view" id="view-list">
+    <div id="list-container"></div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-plat-badge" id="m-plat"></div>
+    <div class="modal-title" id="m-title"></div>
+    <div class="modal-body" id="m-body"></div>
+    <div class="modal-tags" id="m-tags"></div>
+    <div class="modal-footer" id="m-footer"></div>
+  </div>
+</div>
+
+<script>
+const posts = [
+  {day:1,plat:'ig',title:'Summer sale launch',body:'Bright product flat-lay announcing 20% off sitewide. Use bold typography overlay. Post at 10 AM.',tags:['#summersale','#shopnow','#sale'],time:'10:00 AM',type:'Promotional'},
+  {day:1,plat:'fb',title:'Summer sale event',body:'Facebook Event post for the summer sale with countdown. Include link to shop. Boost with ₹500 ad spend.',tags:['sale','event'],time:'10:00 AM',type:'Promotional'},
+  {day:2,plat:'li',title:'Our brand story',body:'Founders post about why sustainability matters in retail. 3-para narrative with a behind-the-scenes photo.',tags:['retail','brand','story'],time:'9:00 AM',type:'Brand'},
+  {day:3,plat:'ig',title:'Product spotlight: tote bag',body:'Carousel of 4 images showing product from all angles. CTA: swipe to see all colours.',tags:['#totebag','#ootd','#sustainable'],time:'11:00 AM',type:'Product'},
+  {day:5,plat:'fb',title:'Customer story',body:'Share a customer testimonial with their photo (with permission). Keep quote authentic and heartfelt.',tags:['testimonial','community'],time:'12:00 PM',type:'Social proof'},
+  {day:6,plat:'ig',title:'Weekend style reel',body:'Short 15-sec reel of weekend outfit ideas featuring your products. Use trending audio.',tags:['#weekendvibes','#styleinspo'],time:'5:00 PM',type:'Reel'},
+  {day:7,plat:'li',title:'Industry trend: sustainable retail',body:'Share a stat or insight about sustainable consumer behaviour in 2026. Position brand as thought leader.',tags:['sustainability','retail2026'],time:'8:00 AM',type:'Thought leadership'},
+  {day:8,plat:'ig',title:'User-generated content repost',body:'Repost a customer photo (tagged post). Add a branded frame. Credit the creator in the caption.',tags:['#UGC','#community'],time:'10:00 AM',type:'UGC'},
+  {day:9,plat:'fb',title:'Poll: favourite product?',body:'Facebook poll asking followers to pick their favourite product from 4 options. Encourage comments.',tags:['poll','engagement'],time:'3:00 PM',type:'Engagement'},
+  {day:10,plat:'ig',title:'Behind the scenes: packaging',body:'Reel showing how orders are packed. Highlights attention to detail and eco-friendly materials.',tags:['#BTS','#packaging','#ecofriendly'],time:'11:00 AM',type:'Behind the scenes'},
+  {day:11,plat:'li',title:'Team spotlight: ops manager',body:'Feature a team member with 3 quick Q&As about their role. Humanises the brand.',tags:['teamspotlight','culture'],time:'9:00 AM',type:'Culture'},
+  {day:12,plat:'fb',title:'Flash sale — 24 hrs only',body:'Post with countdown timer graphic. 15% off a specific category today only. High urgency copy.',tags:['flashsale','limitedtime'],time:'8:00 AM',type:'Promotional'},
+  {day:13,plat:'ig',title:'Weekend GRWM reel',body:'"Get Ready With Me" reel using your accessories. Casual, fun, relatable. Trending audio.',tags:['#GRWM','#fashionreel'],time:'5:00 PM',type:'Reel'},
+  {day:14,plat:'ig',title:"Father's Day gift guide",body:'Gift guide carousel: 6 gift ideas from your store for dads. Use festive creative.',tags:["#FathersDay","#giftguide"],time:'9:00 AM',type:'Seasonal'},
+  {day:14,plat:'fb',title:"Father's Day promo post",body:"Father's Day promotional post with discount code DADS15. Link to gift collection.",tags:["FathersDay","gifts"],time:'9:00 AM',type:'Seasonal'},
+  {day:15,plat:'li',title:'Mid-month performance check',body:'Share a snapshot of June so far — growth metric, customer milestone, or campaign result. Transparency builds trust.',tags:['transparency','metrics'],time:'10:00 AM',type:'Brand'},
+  {day:16,plat:'ig',title:'Product how-to tutorial',body:'Step-by-step Reel showing how to style or use your hero product. 30 seconds max.',tags:['#tutorial','#howto'],time:'12:00 PM',type:'Educational'},
+  {day:17,plat:'fb',title:'Blog post share',body:'Share your latest blog article about summer trends. Include a compelling snippet to drive click-throughs.',tags:['blog','trends'],time:'11:00 AM',type:'Content'},
+  {day:18,plat:'li',title:'Hiring post',body:'Are you hiring? Promote open internship or full-time roles. Include culture highlights.',tags:['hiring','jobalert'],time:'9:00 AM',type:'Recruitment'},
+  {day:19,plat:'ig',title:'Aesthetic flat-lay Thursday',body:'Minimal product flat-lay with summer colour palette. No text overlay — let the product speak.',tags:['#flatlay','#minimal'],time:'10:00 AM',type:'Product'},
+  {day:20,plat:'ig',title:"Follower Q&A stories",body:"Open a Q&A sticker on Stories. Respond to top 5 questions with short video answers next day.",tags:['#QandA','#community'],time:'4:00 PM',type:'Engagement'},
+  {day:21,plat:'fb',title:'Weekend deal alert',body:'Post about a weekend-exclusive bundle deal. Create urgency with "valid this weekend only" copy.',tags:['weekend','deal','bundle'],time:'9:00 AM',type:'Promotional'},
+  {day:22,plat:'li',title:'Partner spotlight',body:'Feature a brand partner or supplier. Mutual tagging expands reach.',tags:['partnership','collab'],time:'9:00 AM',type:'Brand'},
+  {day:23,plat:'ig',title:'New arrivals drop',body:'Reel-style video scrolling through new arrivals. "New in" text overlays. High energy.',tags:['#newarrivals','#newdrop'],time:'11:00 AM',type:'Product'},
+  {day:24,plat:'fb',title:'Community post: share your haul',body:'Ask followers to share their recent purchases in comments. Feature top ones in Stories.',tags:['community','haul'],time:'2:00 PM',type:'Engagement'},
+  {day:25,plat:'ig',title:'Influencer collab post',body:'Repost collaboration content from an influencer partner. Tag them. Add your branded CTA.',tags:['#collab','#influencer'],time:'10:00 AM',type:'Influencer'},
+  {day:26,plat:'li',title:'E-commerce insight article',body:'Write a short LinkedIn article (400 words) on a trend: personalisation, mobile commerce, or return policy impact.',tags:['ecommerce','insight'],time:'8:00 AM',type:'Thought leadership'},
+  {day:27,plat:'ig',title:'Countdown to end-of-month sale',body:'Story countdown sticker to July sale. Create urgency. Swipe-up link (or link in bio).',tags:['#countdown','#sale'],time:'5:00 PM',type:'Promotional'},
+  {day:28,plat:'fb',title:'Summer wrap-up video',body:'Short recap video of June highlights — best sellers, campaigns, community moments.',tags:['recap','summer'],time:'12:00 PM',type:'Brand'},
+  {day:29,plat:'ig',title:'Sunday motivation quote',body:'Branded quote card aligned to your brand values — sustainability, style, or community.',tags:['#motivation','#quotes'],time:'9:00 AM',type:'Lifestyle'},
+  {day:30,plat:'li',title:'June recap & July preview',body:"End-of-month roundup: wins, lessons, what's coming in July. Builds anticipation.",tags:['monthly','recap'],time:'10:00 AM',type:'Brand'},
+  {day:30,plat:'fb',title:'July sale teaser',body:'"Something big is coming..." teaser with countdown to the upcoming July launch.',tags:['teaser','julylaunch'],time:'3:00 PM',type:'Promotional'},
+];
+
+const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+let activeFilter = 'all';
+
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter();
+}
+
+function applyFilter() {
+  document.querySelectorAll('[data-plat]').forEach(el => {
+    if (activeFilter === 'all' || el.dataset.plat === activeFilter) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  });
+}
+
+function switchView(v) {
+  document.getElementById('view-cal').classList.toggle('active', v === 'cal');
+  document.getElementById('view-list').classList.toggle('active', v === 'list');
+  document.getElementById('btn-cal').classList.toggle('active', v === 'cal');
+  document.getElementById('btn-list').classList.toggle('active', v === 'list');
+}
+
+function openModal(idx) {
+  const p = posts[idx];
+  const platMap = {ig:'Instagram',fb:'Facebook',li:'LinkedIn'};
+  document.getElementById('m-plat').textContent = platMap[p.plat];
+  document.getElementById('m-plat').className = 'modal-plat-badge ' + p.plat;
+  document.getElementById('m-title').textContent = p.title;
+  document.getElementById('m-body').textContent = p.body;
+  const tagsEl = document.getElementById('m-tags');
+  tagsEl.innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  document.getElementById('m-footer').innerHTML =
+    `<span>🕐 ${p.time}</span><span>🏷 ${p.type}</span><span>📅 June ${p.day}, 2026</span>`;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+function buildCalendar() {
+  const grid = document.getElementById('cal-grid');
+  const firstDay = new Date(2026, 5, 1).getDay();
+  for (let i = 0; i < firstDay; i++) {
+    grid.insertAdjacentHTML('beforeend', '<div class="cal-cell empty"></div>');
+  }
+  for (let d = 1; d <= 30; d++) {
+    const isToday = d === 28;
+    let html = `<div class="cal-cell${isToday?' today':''}"><div class="cal-num${isToday?' is-today':''}">${d}</div>`;
+    const dp = posts.filter(p => p.day === d);
+    dp.slice(0,3).forEach((p, i) => {
+      const idx = posts.indexOf(p);
+      html += `<div class="post-chip ${p.plat}" data-plat="${p.plat}" onclick="openModal(${idx})"><span class="chip-text">${p.title}</span></div>`;
+    });
+    if (dp.length > 3) html += `<span class="more-tag">+${dp.length-3} more</span>`;
+    html += '</div>';
+    grid.insertAdjacentHTML('beforeend', html);
+  }
+}
+
+function buildList() {
+  const container = document.getElementById('list-container');
+  const platMap = {ig:'Instagram',fb:'Facebook',li:'LinkedIn'};
+  const weekLabels = ['Week 1 — June 1–7','Week 2 — June 8–14','Week 3 — June 15–21','Week 4 — June 22–30'];
+  const weeks = [[1,7],[8,14],[15,21],[22,30]];
+  weeks.forEach((range, wi) => {
+    const wp = posts.filter(p => p.day >= range[0] && p.day <= range[1]);
+    if (!wp.length) return;
+    let html = `<div class="week-group"><div class="week-label">${weekLabels[wi]}</div>`;
+    wp.forEach(p => {
+      const idx = posts.indexOf(p);
+      const dStr = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(2026,5,p.day).getDay()];
+      html += `<div class="list-item" data-plat="${p.plat}" onclick="openModal(${idx})">
+        <div class="list-date"><div class="list-date-num">${p.day}</div><div class="list-date-day">${dStr}</div></div>
+        <div class="list-divider"></div>
+        <div style="flex:1;min-width:0">
+          <div class="list-plat-badge ${p.plat}">${platMap[p.plat]}</div>
+          <div class="list-title">${p.title}</div>
+          <div class="list-body">${p.body.substring(0,80)}…</div>
+        </div>
+        <div class="list-meta"><span class="list-type">${p.type}</span><div class="list-time">${p.time}</div></div>
+      </div>`;
+    });
+    html += '</div>';
+    container.insertAdjacentHTML('beforeend', html);
+  });
+}
+
+function exportCSV() {
+  const platMap = {ig:'Instagram',fb:'Facebook',li:'LinkedIn'};
+  const header = ['Date','Day','Platform','Title','Caption Brief','Hashtags','Post Time','Content Type'];
+  const rows = posts.map(p => {
+    const date = `June ${p.day}, 2026`;
+    const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(2026,5,p.day).getDay()];
+    return [date,day,platMap[p.plat],p.title,p.body,p.tags.join(' '),p.time,p.type]
+      .map(v => `"${v.replace(/"/g,'""')}"`).join(',');
+  });
+  const csv = [header.join(','), ...rows].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = 'content-calendar-june-2026.csv';
+  a.click();
+}
+
+buildCalendar();
+buildList();
+</script>
+</body>
+</html>
